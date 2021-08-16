@@ -1,0 +1,171 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Registration system </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/tooplate-main.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+<!--
+Tooplate 2114 Pixie
+https://www.tooplate.com/view/2114-pixie
+-->
+  </head>
+
+  <body>
+    
+    <!-- Pre Header -->
+    <div id="pre-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <span>Suspendisse laoreet magna vel diam lobortis imperdiet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="assets/images/header-logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index">Home
+			                 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+			
+			
+			
+			<li class="nav-item active">
+              <a class="nav-link" href="/register">Register</a>
+			 
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" href="/favorites">Favorites</a>
+			 
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+			 
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+<script>
+/*
+function check(){
+	
+	var usr=document.getElementById("username").value;
+	var ppwd=document.getElementById("email").value;
+	
+	alert("user:"+usr+"\n"+"email:"+ppwd);
+
+}
+*/
+
+$(document).ready(function(){
+
+	
+	$("#login").click(function() {
+	
+		if ($("#username").val()=="" || $("#password_1").val()=="") {
+			alert('LoginID & Password cannot Null!');
+			return false;
+		}
+	
+	
+		var username =$("#username").val();
+		var passwd =$("#password_1").val();
+		var mydata ="login="+username+"&password="+passwd;
+		alert(mydata);
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8888/Register',
+			dataType:"text",
+			data:mydata,
+            success: function(data) {
+			alert(data);
+				if(data=="login_ok"){
+					alert(data);
+					localStorage.setItem("loginid", username);
+					localStorage.setItem("loginstatus", "OK");
+					location.href="http://www.hyalinehk.com:9998/book";
+					
+				}else{
+					alert(data);
+				}
+				
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error.message);
+            }
+        });
+    });
+	
+	});
+
+</script>
+
+
+<body>
+  <div class="header">
+  	<h2>Register</h2>
+  </div>
+	
+  <form method="post" action="login">
+  	<div class="input-group">
+  	  <label>Username</label>
+  	  <input type="text" name="username" id="username" required>
+  	</div>
+  	<div class="input-group">
+  	  <label>Email Address</label>
+	  <input type="email" name="email" id="email" required>
+  	</div>
+	
+  	<div class="input-group">
+  	  <label>Password</label>
+  	  <input type="password" name="password_1" id="password_1" required>
+  	</div>
+	
+  	<div class="input-group">
+  	  <label>Confirm password</label>
+  	  <input type="password" name="password_2" id="password_2" required>
+  	</div>
+  	<div class="input-group">
+  	  	  <button type="submit" class="btn" name="login" id="login">Register</button>
+	</div>
+	
+
+  	<p>
+  		Already a member? <a href="\login">Sign in</a>
+  	</p>
+  </form>
+</body>
+</html>

@@ -1,0 +1,116 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$( document ).ready(function() {
+
+   
+            $.ajax({
+                type: "GET",
+                url: "https://api.covid19api.com/summary",
+                dataType: "json",
+                success: function (result, status, xhr) {
+                  alert(result.Countries.length);
+				
+  
+     $("#apiresult").html(result.Global.Newconfirmed);
+	 for(i=0; i<result.Countries.length ;i++){
+	 //for(i=0; i<4 ;i++){
+	 //alert(result.Countries[i].Country);
+		//$("#apiresult").append(result.Countries[i].CountryCode);
+		//$("#apiresult").append("<br>");
+		
+	 }
+				},
+                error: function (xhr, status, error) {
+                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
+        
+
+
+      $("#button").click(function(){ 
+
+           var listvalue=[];
+		  
+			 if ($('#model1').is(":checked"))
+			{
+			  // it is checked
+			  //alert("model1");
+			  //listvalue+="&model=model1";
+			  listvalue+="model=model1";
+			  var model1_value = "checked";
+			  //alert (model1_value).val();
+			  			  			
+			}
+
+			if ($('#model2').is(":checked"))
+			{
+			  // it is checked
+			 // alert("model2");
+			  listvalue+="&model=model2"; //no need &
+			  var model2_value = "checked";
+			}
+			if ($('#model3').is(":checked"))
+			{
+			  // it is checked
+			 // alert("model3");
+			  listvalue+="&model=model3";
+			  var model3_value = "checked";
+			}
+			if ($('#model4').is(":checked"))
+			{
+			  // it is checked
+			  //alert("model4");
+			  listvalue+="&model=model4";
+			  var model4_value = "checked";
+			}
+			if ($('#model5').is(":checked"))
+			{
+			  // it is checked
+			  //alert("model5");
+			  listvalue+="&model=model5";
+			  var model5_value = "checked";
+			}
+			
+			//var mydata="model1=,model1"
+			alert("Userid=xxxx"+listvalue);
+			
+			// var mydata = "FavList="+listvalue;             --------Temp not in use
+			//var mydata = "model1=" + model1_value + "&model2=" + model2_value + "&model3=" + model3_value + "&model4=" + model4_value + "&model5=" + model5_value; 
+			var mydata = "user=" + "hewitt" + "&model1=" + model1_value + "&model2=" + model2_value + "&model3=" + model3_value + "&model4=" + model4_value + "&model5=" + model5_value; 
+						
+			 
+			//person = {name:"John", age:31, city:"New York"};
+			
+			alert("Value is : "+mydata);
+			 $.ajax({
+                type: "POST",
+                url: 'http://127.0.0.1:8888/AddToFav',
+                dataType: "JSON",
+				//data:listvalue,
+				data:mydata,
+                success: function (result, status, xhr) {
+                  alert(result.Countries.length);
+		        }
+				
+				});
+				
+				
+				});
+
+});
+
+</script>
+
+
+<div id="apiresult"></div>
+
+
+<input type="checkbox" name="basicInfo[]" id="model1" value="model1"> Model1
+<input type="checkbox" name="basicInfo[]" id="model2" value="model2">Model2
+<input type="checkbox" name="basicInfo[]" id="model3"value="model3">Model3
+<input type="checkbox" name="basicInfo[]" id="model4" value="model4">Model4
+<input type="checkbox" name="basicInfo[]" id="model5"value="model5">Model5
+<input type="checkbox" name="basicInfo[]" id="model6"value="model6">Model6
+
+<button id="button">Click</button>

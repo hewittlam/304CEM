@@ -1,0 +1,163 @@
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Favorites</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/tooplate-main.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+<!--
+Tooplate 2114 Pixie
+https://www.tooplate.com/view/2114-pixie
+-->
+  </head>
+
+  <body>
+    
+    <!-- Pre Header -->
+    <div id="pre-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <span>Suspendisse laoreet magna vel diam lobortis imperdiet</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="assets/images/header-logo.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/index">Home
+			                 
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/products">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+			
+			
+			
+			<li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+			 
+            </li>
+			<li class="nav-item active">
+              <a class="nav-link" href="/favorites">Favorites</a>
+			 
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+			 
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	
+	
+	<script>
+$(document).ready(function(){
+
+	
+	
+	
+		//var username =$("#username").val();
+		var username = "hewitt";
+		var mydata ="login="+username;
+		alert(mydata);
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8888/getfav',
+			dataType:"text",
+			data:mydata,
+            success: function(data) {
+			check= data.substring(1, data.length-1)
+			myObj=JSON.parse(check);
+			alert(myObj.Model1);
+			alert(data);
+			console.log(data);
+			
+			if (myObj.Model1=="checked"){
+			document.getElementById("Item1").innerHTML = "Proin vel ligula"
+										}
+										
+			if (myObj.Model2=="checked"){
+			document.getElementById("Item2").innerHTML = "Erat odio rhoncus"
+										}
+										
+			if (myObj.Model3=="checked"){
+			document.getElementById("Item3").innerHTML = "Integer vel turpis"
+										}
+										
+			if (myObj.Model4=="checked"){
+			document.getElementById("Item4").innerHTML = "Sed purus quam"
+										}
+										
+			if (myObj.Model5=="checked"){
+			document.getElementById("Item5").innerHTML = "Morbi aliquet"
+										}
+				
+				
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error.message);
+            }
+        });
+	
+	});
+	//localStorage.setItem("loginid");
+//document.getElementById("result").innerHTML = localStorage.lastname;
+var loginid = localStorage.getItem("loginid");
+alert (loginid);
+
+
+</script>
+
+	<div class="caption">
+              <h2>Item in shopping cart</h2>
+              <div class="line-dec"></div>
+                          </div>
+
+<div id="Item1" >
+      </div>
+	  <div id="Item2" >
+      </div>
+	  <div id="Item3" >
+      </div>
+	  <div id="Item4" >
+      </div>
+	  <div id="Item5" >
+      </div>
+
+
+ <a href="/single-product">
+                <div class="featured-item">
+                  <img src="assets/images/item-02.jpg" alt="Item 2">
+                  <h4>Erat odio rhoncus</h4>
+                  <h6>$25.00</h6>
+				  <button type="submit" class="btn" name="Remove" id="Remove">Remove from favorite</button> 
+				</div>
+              </a>
